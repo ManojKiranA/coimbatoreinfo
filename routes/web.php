@@ -12,7 +12,8 @@
 */
 
 
-Auth::routes();
+// Auth::routes();
+Auth::routes(['register' => false]);
 
 Route::get('/', 'SiteController@landingPage')->name('site.landing');
 Route::get('/home', 'HomeController@index')->name('home');

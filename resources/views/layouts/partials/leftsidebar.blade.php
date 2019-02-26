@@ -17,6 +17,13 @@
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
 
+        <li class="{{Aktiv::isRouteActive('home')}}">
+          <a href="{{route('home')}}">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            
+          </a>
+        </li>
+
         <li class="{{Aktiv::isResourceActive('cbeInfoBusTimings')}}">
           <a href="{{route('cbeInfoBusTimings.index')}}">
             <i class="fa fa-clock-o"></i> <span>Time Management</span>
@@ -24,26 +31,10 @@
           </a>
         </li>
 
+        
 
-        <li>
-          <a href="../calendar.html">
-            <i class="fa fa-calendar"></i> <span>Calendar</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
-            </span>
-          </a>
-        </li>
-        <li>
-          <a href="../mailbox/mailbox.html">
-            <i class="fa fa-envelope"></i> <span>Mailbox</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-yellow">12</small>
-              <small class="label pull-right bg-green">16</small>
-              <small class="label pull-right bg-red">5</small>
-            </span>
-          </a>
-        </li>
+
+        
 
 
         <li class="treeview {{Aktiv::areResourcesActive(BladeHelper::getActiveMenuArray('LOCATIONMASTER'))}}">
@@ -87,25 +78,6 @@
 
 
 
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-folder"></i> <span>Examples</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="invoice.html"><i class="fa fa-circle-o"></i> Invoice</a></li>
-            <li><a href="profile.html"><i class="fa fa-circle-o"></i> Profile</a></li>
-            <li><a href="login.html"><i class="fa fa-circle-o"></i> Login</a></li>
-            <li><a href="register.html"><i class="fa fa-circle-o"></i> Register</a></li>
-            <li><a href="lockscreen.html"><i class="fa fa-circle-o"></i> Lockscreen</a></li>
-            <li><a href="404.html"><i class="fa fa-circle-o"></i> 404 Error</a></li>
-            <li><a href="500.html"><i class="fa fa-circle-o"></i> 500 Error</a></li>
-
-            <li><a href="pace.html"><i class="fa fa-circle-o"></i> Pace Page</a></li>
-          </ul>
-        </li>
 
 
       </ul>
