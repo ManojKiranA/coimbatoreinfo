@@ -3,13 +3,12 @@
 @section('title','Home Page')
 @section('pageHeader')
   <h1>
-    Advanced Form Elements
-    <small>Preview</small>
+    Dashboard
+    <small>List</small>
   </h1>
   <ol class="breadcrumb">
     <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="#">Forms</a></li>
-    <li class="active">Advanced Elements</li>
+    <li class="active">Dashboard</li>
   </ol>
 @endsection
 @section('content')
