@@ -1,0 +1,22 @@
+<div class="box-body">
+   {{-- Row  Starts --}}
+   <div class="row">
+      <div class="col-sm-5">
+         <div class="form-group @if ($errors->has('{{variableNameSingular}}_name')) has-error @endif">
+            {!! Form::label('{{variableNameSingular}}_name','Name') !!}
+               {!! Form::text('{{variableNameSingular}}_name',old('{{variableNameSingular}}_name'),['placeholder'=>'Enter {{variableNameSingular}}_name','class' =>'form-control rounded','id' =>'{{variableNameSingular}}_name']) !!}
+               @if ($errors->has('{{variableNameSingular}}_name'))
+               <p class="help-block">{{ $errors->first('{{variableNameSingular}}_name') }}</p>
+               @endif
+         </div>
+      </div>
+   </div>
+   {{-- Row  Ends --}}
+</div>
+<!-- /.box-body -->
+<div class="box-footer">
+   {{ Form::button('<i class="fa fa-save"></i> Save', ['type' => 'submit', 'class' => 'btn bg-purple btn-flat margin pull-right'] )  }}
+   {{ Form::button('<i class="fa fa-eraser"></i> Clear', ['type' => 'reset', 'class' => 'btn bg-red btn-flat margin pull-left'] )  }}
+</div>
+<!-- /.box-footer -->
+

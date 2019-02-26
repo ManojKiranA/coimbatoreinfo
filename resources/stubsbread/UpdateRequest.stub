@@ -1,0 +1,52 @@
+<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Gate;
+
+class {{updateRequestClassName}} extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        // if (Gate::allows('edit.{{variableNameSingular}}'))
+        // {
+        //     return true;
+        // }else {
+        //     abort(403, 'Unauthorized.');
+        // }
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            //'{{variableNameSingular}}_name' => 'required|unique:{{tableName}},{{variableNameSingular}}_name,'.$this->{{variableNameSingular}},
+        ];
+    }
+
+    /**
+     * Custom message for validation
+     *
+     * @return array
+     */
+    public function messages()
+    {
+
+        return [
+            // '{{variableNameSingular}}_name.required' =>'Enter {{variableNameSingular}}_name Name',
+            // '{{variableNameSingular}}_name.unique' =>'Location {{variableNameSingular}}_name Alredy Exists',
+        ];
+    }
+
+}

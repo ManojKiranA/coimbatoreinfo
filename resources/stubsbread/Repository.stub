@@ -1,0 +1,25 @@
+<?php
+/**
+* Generated  for {{controllerClassName}} with Model {{modelClassName}}  At {{generatedAt}}
+*
+* @author [{{authorName}}] [<{{authorEmail}}>]
+*/
+namespace App\Repositories;
+
+use App\{{modelClassName}};
+
+class {{repositoryClassName}} extends {{baseRepositoryClassName}} implements {{repositoryInterfaceName}}
+{
+     protected $model;
+      
+     /**
+     * Create a new {{repositoryClassName}} instance.
+     *
+     * @return void
+     * @param {{modelClassName}} $model
+     */
+    public function __construct({{modelClassName}} $model)
+    {
+        $this->model = $model;
+    }
+}

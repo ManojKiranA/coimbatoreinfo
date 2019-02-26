@@ -1,0 +1,60 @@
+@extends('layouts.app')
+
+@section('title','{{variableNamePlural}} List')
+
+@section('pageHeader')
+  <h1>
+    {{variableNamePlural}}
+    <small>List</small>
+  </h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#">{{variableNamePlural}}</a></li>
+    <li class="active">List</li>
+  </ol>
+@endsection
+
+@section('content')
+    <!-- Main content -->
+    <section class="content">
+      <!-- /.row -->
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">{{ ${{variableNamePlural}}->total() }} {{ str_plural('{{variableNameSingular}}', ${{variableNamePlural}}->count()) }}</h3>
+              <div class="box-tools">
+                <a href="{{ route('{{variableNamePlural}}.create') }}" class="btn bg-purple  btn btn-box-tool"> 
+                  <i class="fa fa-plus"></i>&nbsp;&nbsp;Create
+                </a>
+              </div>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body table-responsive no-padding">
+              <table class="table table-hover">
+                <tr>
+                  <th>ID</th>
+                  <th>Created On</th>
+                  <th>Created By</th>
+                  <th>Actions</th>
+                </tr>
+                @foreach(${{variableNamePlural}} as $item)
+                <tr>
+                  <td>{{$loop->iteration}}</td>
+                  <td>{{ApplicationHelper::convertToFormattedDate($item->created_at,1)}}</td>
+                  <td>{{$item->createdBy['name']}}</td>
+                  <td class="text-center">
+                   {{ BladeHelper::tableActionButtons(url()->full(),$item->id,$item->id,['edit','delete'],null,false) }}
+                 </td>
+                </tr>
+                @endforeach
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+      </div>
+    </section>
+    <!-- /.content -->
+@endsection

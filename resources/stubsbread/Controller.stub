@@ -1,0 +1,135 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\{{modelClassName}};
+use App\Http\Resources\{{resourceClassName}};
+use App\Http\Requests\{{storeRequestClassName}};
+use App\Http\Requests\{{updateRequestClassName}};
+use App\Repositories\{{repositoryClassName}};
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Route;
+
+use App\Helpers\BladeHelper;
+use App\Helpers\ApplicationHelper;
+
+class {{controllerClassName}} extends Controller
+{
+    /**
+     * Create a new {{modelClassName}}Controller instance.
+     *
+     * @return void
+     */
+    protected ${{variableNameSingular}};
+
+    public function __construct({{modelClassName}} ${{variableNameSingular}},Request $request)
+    {
+        $this->middleware('auth');
+        // $this->{{variableNameSingular}} = new {{repositoryClassName}}(${{variableNameSingular}});
+
+         $this->{{variableNameSingular}} = $this->{{variableNameSingular}};
+    }
+    /**
+     * Display a listing of the resource.
+     *
+     * @author [{{authorName}}] [<{{authorEmail}}>]
+     * @return \Illuminate\Http\Response
+     */
+
+    public function index()
+    {
+        ${{variableNamePlural}} = {{modelClassName}}::latest()->paginate();
+        $viewShare = ['{{variableNamePlural}}'];
+        return view('{{viewFolderName}}.index', compact($viewShare));
+    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @author [{{authorName}}] [<{{authorEmail}}>]
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        $viewShare = [''];
+        return view('{{viewFolderName}}.create', compact($viewShare));
+    }
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @author [{{authorName}}] [<{{authorEmail}}>]
+     * @param  \App\Http\{{storeRequestClassName}}  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store({{storeRequestClassName}} $request)
+    {
+        {{modelClassName}}::create($request->all());
+        return redirect()->route('{{variableNamePlural}}.index')->with('success','{{modelClassName}} Created Successfully');
+    }
+    /**
+     * Display the specified resource.
+     *
+     * @author [{{authorName}}] [<{{authorEmail}}>]
+     * @param  int  $id
+     * @param  \App\{{modelClassName}}  ${{modelClassName}}
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id,{{modelClassName}} ${{variableNameSingular}})
+    {
+        ${{variableNameSingular}} = {{modelClassName}}::findOrFail($id);
+        $viewShare = ['{{variableNameSingular}}'];
+        return view('{{viewFolderName}}.show',compact($viewShare));
+    }
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @author [{{authorName}}] [<{{authorEmail}}
+     * @param  \App\{{modelClassName}}  ${{modelClassName}}
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id,{{modelClassName}} ${{modelClassName}})
+    {
+        ${{variableNameSingular}} = {{modelClassName}}::findOrFail($id);
+        $viewShare = ['{{variableNameSingular}}'];
+        return view('{{viewFolderName}}.edit',compact($viewShare));
+    }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @author [{{authorName}}] [<{{authorEmail}}>]
+     * @param  \Illuminate\Http\{{updateRequestClassName}}  $request
+     * @param  \App\{{modelClassName}}  ${{modelClassName}}
+     * @return \Illuminate\Http\Response
+     */
+    public function update({{updateRequestClassName}} $request, $id)
+    {
+        ${{variableNameSingular}} = {{modelClassName}}::find($id);
+        ${{variableNameSingular}}->update($request->all());        
+        return redirect()->route('{{variableNamePlural}}.index')->with('success','{{modelClassName}} Updated Successfully');
+    }    
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @author [{{authorName}}] [<{{authorEmail}}>]
+     * @param  \App\{{modelClassName}}  ${{modelClassName}}
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id,{{modelClassName}} ${{modelClassName}})
+    {
+        ${{variableNameSingular}} = {{modelClassName}}::findOrFail($id);
+        if (!empty(${{variableNameSingular}}))
+        {
+            ${{variableNameSingular}}->delete();
+            return redirect()->route('{{variableNamePlural}}.index')->with('success','{{modelClassName}} Deleted Successfully');
+
+        }else{
+            return redirect()->route('{{variableNamePlural}}.index')->with('error','{{modelClassName}} Not Found');
+        }
+    }
+}

@@ -1,0 +1,9 @@
+<?php
+
+use Faker\Generator as Faker;
+
+$factory->define(App\{{modelClassName}}::class, function (Faker $faker) {
+    return [
+        // '{{variableNameSingular}}_name' => $faker->name,
+    ];
+});

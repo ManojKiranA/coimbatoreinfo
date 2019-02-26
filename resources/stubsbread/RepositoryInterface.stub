@@ -1,0 +1,12 @@
+<?php
+/**
+* Generated  for {{controllerClassName}} with Model {{modelClassName}}  At {{generatedAt}}
+*
+* @author [{{authorName}}] [<{{authorEmail}}>]
+*/
+namespace App\Repositories;
+
+interface {{repositoryInterfaceName}} extends {{baseRepositoryInterfaceName}}
+{
+    //
+}
