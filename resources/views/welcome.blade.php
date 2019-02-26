@@ -6,6 +6,7 @@
                <div class="row">
                   <div class="col text-center">
                      @if(isset($busResultCollection))
+
                         <div class="section_subtitle">{{$busResultCollection->count()}}-{{$busResultCollection->count() <= 1 ? 'Bus':'Busses' }}</div>
                         <div class="section_title">
                            <h2>List of Busses From {{$currentTime}} to {{$nextTimeLimit}} </h2>
@@ -15,6 +16,7 @@
                   </div>
                </div>
                <div class="row destinations_row">
+                  @if($isBusAvailable == "AVAILABLE")
                   <table class="table">
                      <thead>
                         <tr>
@@ -29,7 +31,7 @@
                      <tbody>
                         
                         
-                        @if($isBusAvailable == "AVAILABLE")
+                        
                         @foreach($busResult as $item)
                         <tr>
                            <td>{{$loop->iteration}}</td>
@@ -42,12 +44,16 @@
                         @endforeach
                         
                         </tr>
-                        @endif
+                        
                      </tbody>
                   </table>
                   <center>
                      {{$busResult->links()}}  
                   </center>
+                  @else
+                  No Busses in Current Time
+                  @endif
+
                </div>
             </div>
          </div>
