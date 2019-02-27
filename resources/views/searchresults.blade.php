@@ -42,12 +42,15 @@
                         @endforeach
                         
                         </tr>
-                        @endif
+                        
                      </tbody>
                   </table>
                   <center>
                      {{$busSearchResult->appends(request()->input())->links()}}  
                   </center>
+                  @else
+                  No Busses in Current Time
+                  @endif
                </div>
             </div>
          </div>

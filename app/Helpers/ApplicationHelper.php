@@ -16,10 +16,6 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Collection;
 
 
-
-
-
-
 use App\Helpers\BladeHelper;
 
 
@@ -154,8 +150,6 @@ class ApplicationHelper
                                                             ->with('versionCreatedByName')
                                                             ->get();
 
-                                                            // dd($versionQueryCollection);
-
 
             if ($versionQueryCollection->isEmpty()) 
             {
@@ -205,8 +199,6 @@ class ApplicationHelper
                                                             ->orderBy('ver_document_version_no', 'DESC')
                                                             ->with('versionCreatedByName')
                                                             ->get();
-
-                                                            // dd($versionQueryCollection);
 
 
             if ($versionQueryCollection->isEmpty()) 
@@ -725,6 +717,7 @@ class ApplicationHelper
         return $finalResult;
         
     }
+    
 
         
 

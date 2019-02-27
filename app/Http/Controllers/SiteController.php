@@ -175,6 +175,7 @@ class SiteController extends Controller
                  {
                    $isSearchBusAvailable = "NOT AVAILABLE";
                  }
+                 
 
                  $viewShare = ['isSearchBusAvailable','busSearchResult','currentTime','nextTimeLimit','busResultCollection','busResultSearchCollection','fromLocation','toLocation'];
 
