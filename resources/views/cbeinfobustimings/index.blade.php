@@ -45,7 +45,7 @@
                 </tr>
                 @foreach($cbeInfoBusTimings as $item)
                 <tr>
-                  <td>{{$loop->iteration}}</td>
+                  <td>{{ ($cbeInfoBusTimings ->currentpage()-1) * $cbeInfoBusTimings ->perpage() + $loop->index + 1 }}</td>
                   <td>{{$item->busName['bus_name']}}</td>
                   <td>{{$item->busType['bus_type_name']}}</td>
                   <td>{{$item->busRouteName['bus_via_name'] }}</td>
@@ -59,6 +59,9 @@
                 </tr>
                 @endforeach
               </table>
+              <center>
+                {{$cbeInfoBusTimings->links()}}  
+              </center>
             </div>
             <!-- /.box-body -->
           </div>

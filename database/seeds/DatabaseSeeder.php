@@ -22,6 +22,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+
+        Schema::disableForeignKeyConstraints();
+
         $this->truncateAllTables();
         $this->call(UsersTableSeeder::class);
         // factory(CbeInfoLocationFrom::class, 100)->create();
@@ -44,6 +47,8 @@ class DatabaseSeeder extends Seeder
         // enabling the event dispatcher
         CbeInfoBusTiming::setEventDispatcher($dispatcher);
         // $this->disableEvents('CbeInfoBusTiming',['App','Models'],factory(CbeInfoBusTiming::class, 1500)->create());
+
+        Schema::enableForeignKeyConstraints();
 
         
 

@@ -83,7 +83,7 @@ class CbeInfoBusTiming extends Model
      *
      * @var int
      */
-    protected $perPage = 10;
+    protected $perPage = 20;
 
     /**
      * The connection name for the model.

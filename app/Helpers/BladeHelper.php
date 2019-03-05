@@ -125,7 +125,7 @@ class BladeHelper
 
     public static  function tableActionButtons($fullUrl, $id, $titleValue, $buttonActions = ['show', 'edit', 'delete'], $buttonOptions = '', $encryptId = false)
     {
-
+        $fullUrl = strtok($fullUrl, '?');
         if ($encryptId) {
             $id = Crypt::encrypt($id);
         }
