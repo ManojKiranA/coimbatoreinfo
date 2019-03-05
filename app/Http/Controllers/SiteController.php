@@ -24,8 +24,7 @@ class SiteController extends Controller
     						'LFT.location_from_name as locationFrom',
     						//select location_to_name from cbe_info_location_tos table
     						'LTT.location_to_name as toLocation',
-
-                //select location_to_name from cbe_info_location_tos table
+                //select bus_via_name from cbe_info_bus_vias table
                 'BVT.bus_via_name as busGoingVia',
     					];
 
