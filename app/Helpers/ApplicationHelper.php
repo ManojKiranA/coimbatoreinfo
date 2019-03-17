@@ -81,6 +81,11 @@ class ApplicationHelper
             return $currentModelWithNameSpace;
         }
 
+        public static function strtoModel($modelName='',$nameSpace='')
+        {
+            return self::convertVariableToModelName($modelName,$nameSpace);
+        }
+
         public static function generateSeriesNumberWithPrefix($modelName = '',$nameSpace='', $autogenField = '', $autogenStart = '', $autogenPrefix = '')
         {
             $currentModel = static::convertVariableToModelName($modelName,$nameSpace);
@@ -314,6 +319,11 @@ class ApplicationHelper
             }
 
             return new HtmlString(implode('',$finalHtml));
+        }
+
+        public static function mysql($query)
+        {
+            return static::sqlWithParm($query);
         }
 
         public static function sqlWithParm($query)

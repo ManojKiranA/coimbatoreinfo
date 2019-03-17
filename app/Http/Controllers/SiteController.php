@@ -6,9 +6,14 @@ use Illuminate\Http\Request;
 use App\Models\CbeInfoBusTiming;
 use App\Helpers\ApplicationHelper;
 use Illuminate\Support\Arr;
+use Illuminate\Database\Eloquent\Builder;
+use App\Models\User;
+
 
 class SiteController extends Controller
 {
+
+
     public function landingPage()
     {
     	//list of fields to be selected 
@@ -53,12 +58,8 @@ class SiteController extends Controller
                   ->select($selectArray);
         //converting the builder query to collection
        $busResultCollection = $busResultQuery->get();
-       // dd($busResultCollection);
        
 
-       // dd(ApplicationHelper::sqlWithParm($busResultQuery));
-       // dd($busResultCollection);
-       //converting the builder query to collection
 
        if ($busResultCollection->isNotEmpty()) 
        {
@@ -86,23 +87,98 @@ class SiteController extends Controller
 
        return $newFormat;        
     }
+
+
+    public function search($modelTableName='',$searchFileds='',$searchKeyWord='',$joinableQuery=[])
+    {  
+
+
+      $skippedFileds = ['created_at','updated_at'];    
+  
+      if ($searchFileds === '*')
+      {        
+        $allfilelds = $modelTableName->getFillable();
+
+        $mainTableSearchFields = self::arrayem($allfilelds,$skippedFileds);
+      }
+
+      elseif ($searchFileds !== '*') 
+      {
+        if (!is_array($searchFileds)) 
+        {
+          $mainTableSearchFields = explode(' ', $searchFileds);
+        }
+        elseif (is_array($searchFileds)) 
+        {
+          $mainTableSearchFields = $searchFileds;
+        }
+      }
+
+
+     // $mainTableSearchQuery =  $modelTableName::where(function ($query) use ($searchKeyWord,$mainTableSearchFields) {
+     //        foreach ($mainTableSearchFields as $field) {
+     //             $query->orWhere($field, 'LIKE', "%$searchKeyWord%");
+     //        }
+     //    });
+
+     // $mainTableSearchQuery =  $modelTableName::leftJoin();
+
+     // dd(ApplicationHelper::mysql($mainTableSearchQuery));
+
+
+    }
+
+    public  function isValuePasses($passesValue='')
+    {
+       if (empty($passesValue) || is_null($passesValue) || $passesValue === "") 
+        {                
+           return 'NOT_PASSED';
+        }else
+        {
+            return 'PASSED';
+        }
+    }
+
+    public function arrayem($array='',$arrayValues='')
+    {
+      if (!is_array($arrayValues)) 
+      {
+        if (($keyOfValue = array_search($arrayValues, $array)) !== false) 
+        {
+          unset($array[$keyOfValue]);
+        }
+
+        return $array;   
+      }elseif (is_array($arrayValues)) 
+      {
+        return array_diff($array, $arrayValues);
+      }
+      
+    }
+
+
+
     public function serachBus(Request $request)
     {
+
+
+
+//       $searchObject = new CbeInfoBusTiming;
+//       $joinedArray = [['cbe_info_bus_names as BNT', 'BNT.id', '=', 'cbe_info_bus_timings.bus_id'],['cbe_info_bus_types as BTT','BTT.id','=','cbe_info_bus_timings.bus_type_id']];
+//       $serachBus = self::search($searchObject,'*','17:00',$joinedArray);
+//       // dd($serachBus);
+
+
+
+// $searck = CbeInfoBusTiming::search(['bus_time','bus_route_id'], ['17:00','03:00']);
+// $searckn = CbeInfoBusTiming::multipleSearchWithOutRelation(['bus_time','bus_route_id'], ['17:00','03:00']);
+
+// dd(ApplicationHelper::mysql($searck),ApplicationHelper::mysql($searckn));
+
+
       
       $fromLocation = $request->location_from;
       $toLocation = $request->location_to;
-      // dd($request->all());
-      // $this->validate(
-      //   request(),
-      //   [
-      //     'location_from' => 'required',
-      //     'location_to' => 'required',
-      //   ],
-      //   [
-      //     'location_from.required' => 'Choose Location From',
-      //     'location_to.required' => 'Choose Location To',
-      //   ]
-      // );
       //list of fields to be selected 
       $selectArray =  [ //select id from bus timings table
                 'cbe_info_bus_timings.id',
@@ -126,17 +202,13 @@ class SiteController extends Controller
 
             
 
-                // if (empty($request->location_from) && is_null($request->location_from) && $request->location_from == "") 
-                // {
-                //     $modelTableNameWithNameSpace = $nameSpace.'\\'.$modelTableName;
-                     
-                // }
-
               $whereArray = 
                           [
                             ['LFT.id','=',$request->location_from],
                             ['LTT.id','=',$request->location_to],
                           ];
+                  
+
       //joining all the tables and getting the query
       $busResultSearchQuery = CbeInfoBusTiming::
                   //join thecbe_info_bus_names AS BNT BY matching the id on BNT and bus_id on cbe_info_bus_timings
@@ -159,6 +231,8 @@ class SiteController extends Controller
                   //selecting the required fields
                   ->select($selectArray);
                   //converting the builder query to collection
+
+                 
                  $busResultSearchCollection = $busResultSearchQuery->get();
                  // dd(ApplicationHelper::sqlWithParm($busResultQuery));
                  // dd($busResultCollection);
@@ -176,7 +250,7 @@ class SiteController extends Controller
                  }
                  
 
-                 $viewShare = ['isSearchBusAvailable','busSearchResult','currentTime','nextTimeLimit','busResultCollection','busResultSearchCollection','fromLocation','toLocation'];
+                 $viewShare = ['isSearchBusAvailable','busSearchResult','currentTime','nextTimeLimit','busResultSearchCollection','busResultSearchCollection','fromLocation','toLocation'];
 
                 return view('searchresults',compact($viewShare));      
 

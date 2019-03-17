@@ -6,8 +6,8 @@
             <div class="container">
                <div class="row">
                   <div class="col text-center">
-                     @if(isset($busResultCollection))
-                        <div class="section_subtitle">{{$busResultCollection->count()}}-{{$busResultCollection->count() <= 1 ? 'Bus':'Busses' }}</div>
+                     @if(isset($busResultSearchCollection))
+                        <div class="section_subtitle">{{$busResultSearchCollection->count()}}-{{$busResultSearchCollection->count() <= 1 ? 'Bus':'Busses' }}</div>
                         <div class="section_title">
                            <h2>List of Busses From {{$currentTime}} to {{$nextTimeLimit}} </h2>
                         </div>

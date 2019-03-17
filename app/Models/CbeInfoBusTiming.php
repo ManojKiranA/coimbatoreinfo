@@ -12,6 +12,9 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
 use App\Models\Traits\UserStampsTrait;
+use App\Models\Traits\SearchableTrait;
+use Illuminate\Database\Eloquent\Builder;
+
 
 /**
  * Class CbeInfoBusTiming
@@ -21,8 +24,19 @@ use App\Models\Traits\UserStampsTrait;
 
 class CbeInfoBusTiming extends Model
 {
+
+    
+
 	use SoftDeletes;
     use UserStampsTrait;
+    use SearchableTrait;
+    
+
+    public function getProperty($var)
+    {
+        return $this->$var;
+    }
+    
     // YourModel::flushEventListeners();
 
     /**
@@ -31,6 +45,28 @@ class CbeInfoBusTiming extends Model
      * @var string
      */
     protected $table = 'cbe_info_bus_timings';
+
+    /**
+     * Searchable rules.
+     *
+     * @var array
+     */
+    protected $searchable = [
+        /**
+         * Columns and their priority in search results.
+         * Columns with higher values are more important.
+         * Columns with equal values have equal importance.
+         *
+         * @var array
+         */
+        'columns' => [
+            'cbe_info_bus_timings.bus_id' => 10,
+            'cbe_info_bus_timings.bus_time' => 10,
+        ],
+        'joins' => [
+            'cbe_info_bus_names' => ['cbe_info_bus_names.id','cbe_info_bus_timings.bus_id'],
+        ],
+    ];
 
     /**
      * The primary key for the model.
@@ -171,7 +207,7 @@ class CbeInfoBusTiming extends Model
     *
     * @return \Illuminate\Database\Eloquent\Relations\belongsTo
     */
-    public function busName()
+    public function cbe_info_bus_names()
     {
         return $this->belongsTo(CbeInfoBusName::class, 'bus_id');
     }

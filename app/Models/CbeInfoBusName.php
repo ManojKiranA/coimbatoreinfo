@@ -155,6 +155,13 @@ class CbeInfoBusName extends Model
         return $this->belongsTo(User::class, 'created_by');
     }
 
+    public function cbe_info_bus_timings()
+    {
+        return $this->hasMany(CbeInfoBusTiming::class, 'bus_id');
+    }
+
+    
+
 
 
 }

@@ -17,6 +17,9 @@ Auth::routes(['register' => false]);
 
 Route::get('/', 'SiteController@landingPage')->name('site.landing');
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/tosql', 'HomeController@tosql')->name('tosql');
+Route::get('/tosqlWithValues', 'HomeController@tosqlWithValues')->name('tosqlWithValues');
+
 
 
 
