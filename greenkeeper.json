@@ -1,0 +1,23 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "package.json",
+        "public/adminlteassets/bower_components/Flot/package.json",
+        "public/adminlteassets/bower_components/bootstrap-datepicker/package.json",
+        "public/adminlteassets/bower_components/bootstrap-daterangepicker/package.json",
+        "public/adminlteassets/bower_components/bootstrap/package.json",
+        "public/adminlteassets/bower_components/chart.js/package.json",
+        "public/adminlteassets/bower_components/ckeditor/package.json",
+        "public/adminlteassets/bower_components/eonasdan-bootstrap-datetimepicker/package.json",
+        "public/adminlteassets/bower_components/eve-raphael/package.json",
+        "public/adminlteassets/bower_components/ion.rangeSlider/package.json",
+        "public/adminlteassets/bower_components/jquery-knob/package.json",
+        "public/adminlteassets/bower_components/jquery-slimscroll/package.json",
+        "public/adminlteassets/bower_components/jquery-ui/package.json",
+        "public/adminlteassets/bower_components/morris.js/package.json",
+        "public/adminlteassets/bower_components/select2/package.json"
+      ]
+    }
+  }
+}
